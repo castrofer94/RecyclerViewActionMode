@@ -49,7 +49,7 @@ public class Adapter extends RecyclerView.Adapter<ViewHolder> {
         holder.outraDescricao.setText(lista.get(position).getOutraDescricao());
 
         holder.itemView
-                .setBackgroundColor(itensSelecionados.get(position) ? Color.parseColor("#dfdfdf")
+                .setBackgroundColor(itensSelecionados.get(position) ? 0x9934B5E4
                         : Color.TRANSPARENT);
     }
 
