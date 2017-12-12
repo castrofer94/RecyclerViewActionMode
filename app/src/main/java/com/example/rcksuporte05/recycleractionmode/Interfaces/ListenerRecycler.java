@@ -5,7 +5,7 @@ package com.example.rcksuporte05.recycleractionmode.Interfaces;
  */
 
 public interface ListenerRecycler {
-    void OnItemClickListener(int position);
+    void OnRecyclerClickListener(int position);
 
-    void OnItemLongClickListener(int positon);
+    void OnRecyclerLongClickListener(int positon);
 }

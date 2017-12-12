@@ -31,14 +31,14 @@ public class ViewHolder extends RecyclerView.ViewHolder {
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listenerRecycler.OnItemClickListener(getAdapterPosition());
+                listenerRecycler.OnRecyclerClickListener(getAdapterPosition());
             }
         });
 
         itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                listenerRecycler.OnItemLongClickListener(getAdapterPosition());
+                listenerRecycler.OnRecyclerLongClickListener(getAdapterPosition());
                 return false;
             }
         });
