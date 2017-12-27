@@ -1,22 +1,26 @@
-package com.example.rcksuporte05.recycleractionmode.Activitys;
+package com.example.rcksuporte05.recycleractionmode.Frag;
 
-import android.content.Intent;
+import android.app.Activity;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.ActionMode;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.example.rcksuporte05.recycleractionmode.Adapter.Adapter;
 import com.example.rcksuporte05.recycleractionmode.Interfaces.ListenerRecycler;
-import com.example.rcksuporte05.recycleractionmode.Interfaces.TabActivity;
 import com.example.rcksuporte05.recycleractionmode.Model.ObjetoLista;
 import com.example.rcksuporte05.recycleractionmode.R;
+import com.example.rcksuporte05.recycleractionmode.util.DividerItemDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,10 +28,14 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity implements ListenerRecycler {
+/**
+ * Created by RCKSUPORTE05 on 26/12/2017.
+ */
 
-    @BindView(R.id.listaTeste)
-    RecyclerView listaTeste;
+public class Frag1 extends Fragment implements ListenerRecycler {
+
+    @BindView(R.id.listaFrag1)
+    RecyclerView recyclerView;
 
     @BindView(R.id.swipe)
     SwipeRefreshLayout swipe;
@@ -35,21 +43,24 @@ public class MainActivity extends AppCompatActivity implements ListenerRecycler 
     private Adapter adapter;
     private ActionMode actionMode;
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.frag1, container, false);
+        ButterKnife.bind(this, view);
 
-        listaTeste.setLayoutManager(new LinearLayoutManager(this));
-        listaTeste.addItemDecoration(new DividerItemDecoration(this, LinearLayout.VERTICAL));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), LinearLayout.VERTICAL));
         preencheLista();
+
         swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 preencheLista();
             }
         });
+
+        return view;
     }
 
     public void preencheLista() {
@@ -61,8 +72,8 @@ public class MainActivity extends AppCompatActivity implements ListenerRecycler 
             lista.add(objetoLista);
             i++;
         }
-        adapter = new Adapter(lista, this, this);
-        listaTeste.setAdapter(adapter);
+        adapter = new Adapter(lista, this, getActivity());
+        recyclerView.setAdapter(adapter);
         swipe.setRefreshing(false);
     }
 
@@ -70,11 +81,6 @@ public class MainActivity extends AppCompatActivity implements ListenerRecycler 
     public void OnRecyclerClickListener(int position) {
         if (adapter.getItemSelectedCount() > 0)
             enableActionMode(position);
-        else {
-            Intent intent = new Intent(MainActivity.this, TabActivity.class);
-            intent.putExtra("id", adapter.getItem(position).getId());
-            startActivity(intent);
-        }
     }
 
     @Override
@@ -82,13 +88,13 @@ public class MainActivity extends AppCompatActivity implements ListenerRecycler 
         enableActionMode(positon);
     }
 
-    private void enableActionMode(int position) {
+    public void enableActionMode(int position) {
         if (actionMode == null)
-            actionMode = startSupportActionMode(new ActionMode.Callback() {
+            actionMode = ((AppCompatActivity) getActivity()).startSupportActionMode(new ActionMode.Callback() {
                 @Override
                 public boolean onCreateActionMode(ActionMode mode, Menu menu) {
                     mode.getMenuInflater().inflate(R.menu.menu_action_mode, menu);
-                    return true;
+                    return false;
                 }
 
                 @Override
