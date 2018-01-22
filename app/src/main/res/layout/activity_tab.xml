@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.rcksuporte05.recycleractionmode.Interfaces.TabActivity">
+    android:theme="@style/AppTheme"
+    tools:context="com.example.rcksuporte05.recycleractionmode.Activitys.TabActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"

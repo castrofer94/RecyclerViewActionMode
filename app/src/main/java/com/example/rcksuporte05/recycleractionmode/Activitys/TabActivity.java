@@ -1,4 +1,4 @@
-package com.example.rcksuporte05.recycleractionmode.Interfaces;
+package com.example.rcksuporte05.recycleractionmode.Activitys;
 
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;

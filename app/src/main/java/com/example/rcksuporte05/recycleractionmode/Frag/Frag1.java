@@ -1,6 +1,5 @@
 package com.example.rcksuporte05.recycleractionmode.Frag;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -16,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.example.rcksuporte05.recycleractionmode.Activitys.TabActivity;
 import com.example.rcksuporte05.recycleractionmode.Adapter.Adapter;
 import com.example.rcksuporte05.recycleractionmode.Interfaces.ListenerRecycler;
 import com.example.rcksuporte05.recycleractionmode.Model.ObjetoLista;
@@ -60,6 +60,7 @@ public class Frag1 extends Fragment implements ListenerRecycler {
             }
         });
 
+
         return view;
     }
 
@@ -94,7 +95,7 @@ public class Frag1 extends Fragment implements ListenerRecycler {
                 @Override
                 public boolean onCreateActionMode(ActionMode mode, Menu menu) {
                     mode.getMenuInflater().inflate(R.menu.menu_action_mode, menu);
-                    return false;
+                    return true;
                 }
 
                 @Override
@@ -132,6 +133,13 @@ public class Frag1 extends Fragment implements ListenerRecycler {
         } else {
             actionMode.setTitle(String.valueOf(adapter.getItemSelectedCount()));
             actionMode.invalidate();
+        }
+    }
+
+    public void finishActionMode() {
+        if (actionMode != null) {
+            actionMode.finish();
+            actionMode = null;
         }
     }
 }

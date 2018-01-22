@@ -14,7 +14,6 @@ import android.widget.LinearLayout;
 
 import com.example.rcksuporte05.recycleractionmode.Adapter.Adapter;
 import com.example.rcksuporte05.recycleractionmode.Interfaces.ListenerRecycler;
-import com.example.rcksuporte05.recycleractionmode.Interfaces.TabActivity;
 import com.example.rcksuporte05.recycleractionmode.Model.ObjetoLista;
 import com.example.rcksuporte05.recycleractionmode.R;
 
